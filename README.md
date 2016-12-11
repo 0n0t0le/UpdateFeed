@@ -7,11 +7,13 @@
 
 - ws://127.0.0.1:8090 - rpc-endpoint вашей ноды
 - 127.0.0.1:8091 - адрес на котором будет слушать команды запущенный клиент
+
 Также необходимо установить следующие пакеты
 
 - jq - утилита для работы с JSON
 - bc - калькулятор
 - curl - HTTP клиент (скорее всего у Вас уже установлен)
+
 `sudo apt-get install jq bc curl`
 
 Для самого скрипта необходимо добавить в .bash_profile некоторые переменные, индивидуальные для каждого делегата
@@ -19,6 +21,7 @@
 `echo "export GOLOS_WALLET=http://127.0.0.1:8091" » $HOME/.bash_profile`
 `echo "export GOLOS_PASSWORD=YOURstrongPSSWRD" » $HOME/.bash_profile`
 `echo "export GOLOS_WITNESS=on0tole" » $HOME/.bash_profile`
+
 где
 
 - WALLET - rpc адрес cli_wallet
