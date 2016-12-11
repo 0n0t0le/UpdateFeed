@@ -27,3 +27,5 @@
 - WALLET - rpc адрес cli_wallet
 - WITNESS - имя делегата, от имени которого будет публиковаться фид
 - PASSWORD - пароль для разблокировки cli_wallet
+
+Подробности [тут](https://golos.io/ru--delegaty/@on0tole/predstavlyayu-skript-dlya-avtomaticheskogo-obnovleniya-price-feed-dlya-delegatov)
