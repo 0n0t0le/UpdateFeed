@@ -3,6 +3,7 @@
 Необходимо, чтобы cli_wallet был запущен. Это можно сделать командой
 
 `screen -dmS cliwallet ./cli_wallet --server-rpc-endpoint=ws://127.0.0.1:8090 --rpc-http-endpoint=127.0.0.1:8091 --rpc-http-allowip 127.0.0.1 -d`
+
 где
 
 - ws://127.0.0.1:8090 - rpc-endpoint вашей ноды
@@ -18,9 +19,11 @@
 
 Для самого скрипта необходимо добавить в .bash_profile некоторые переменные, индивидуальные для каждого делегата
 
-`echo "export GOLOS_WALLET=http://127.0.0.1:8091" » $HOME/.bash_profile`
-`echo "export GOLOS_PASSWORD=YOURstrongPSSWRD" » $HOME/.bash_profile`
-`echo "export GOLOS_WITNESS=on0tole" » $HOME/.bash_profile`
+```sh
+echo "export GOLOS_WALLET=http://127.0.0.1:8091" >> $HOME/.bash_profile
+echo "export GOLOS_PASSWORD=YOURstrongPSSWRD" >> $HOME/.bash_profile
+echo "export GOLOS_WITNESS=on0tole" >> $HOME/.bash_profile
+```
 
 где
 
