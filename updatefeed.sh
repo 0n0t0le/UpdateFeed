@@ -50,7 +50,7 @@ function getGoldMgPrice {
 
 function getIcoBalance {
 	#ICO_BALANCE=`curl -s 'http://btc.blockr.io/api/v1/address/balance/3CWicRKHQqcj1N6fT1pC9J3hUzHw1KyPv3?confirmations=2' | jq -r '.data.balance'`
-	ICO_BALANCE=600.1
+	ICO_BALANCE=600.18
 }
 
 function getBtcUsdPrice {
