@@ -28,6 +28,9 @@ NICKNAME=$GOLOS_WITNESS
 ICO_ADDRESS="3CWicRKHQqcj1N6fT1pC9J3hUzHw1KyPv3"
 ICO_TOKENS=45120000
 
+
+
+
 function is_locked {
 	LOCKED=`curl -s --data-binary '{"id":"1","method":"is_locked","params":[""]}' "$WALLET" | jq -r '.result'`
 }
@@ -48,8 +51,13 @@ function getGoldMgPrice {
 	XAUMG=$(echo "scale=10 ; $XAUOZ / $GRAMM_IN_OZ / 1000" | bc)
 }
 
+function getSupply {
+    TOTAL_SUPPLY=`curl -s --data-binary '{"id":"1","method":"info","params":[]}' http://127.0.0.1:9090 | jq -r ".result.current_supply" | cut -d '.' -f 1`
+}
+
 function getIcoBalance {
 	#ICO_BALANCE=`curl -s 'http://btc.blockr.io/api/v1/address/balance/3CWicRKHQqcj1N6fT1pC9J3hUzHw1KyPv3?confirmations=2' | jq -r '.data.balance'`
+	
 	ICO_BALANCE=600.18
 }
 
@@ -85,9 +93,10 @@ fi
 getGoldMgPrice
 getIcoBalance
 getBtcUsdPrice
+getSupply
 
 # Calc
-GOLOS_USD=$(echo "scale=10 ; $ICO_BALANCE * $BTC_USD / $ICO_TOKENS" | bc)
+GOLOS_USD=$(echo "scale=10 ; $ICO_BALANCE * $BTC_USD / $TOTAL_SUPPLY" | bc)
 GBG_GOLOS=$(echo "scale=3 ; $XAUMG / $GOLOS_USD" | bc)
 
 # Publish
