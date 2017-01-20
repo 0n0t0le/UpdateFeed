@@ -24,10 +24,6 @@ if [ -z $GOLOS_WITNESS ]; then
 fi
 NICKNAME=$GOLOS_WITNESS
 
-# ICO settings
-ICO_ADDRESS="3CWicRKHQqcj1N6fT1pC9J3hUzHw1KyPv3"
-ICO_TOKENS=45120000
-
 function is_locked {
 	LOCKED=`curl -s --data-binary '{"id":"1","method":"is_locked","params":[""]}' "$WALLET" | jq -r '.result'`
 }
@@ -42,19 +38,8 @@ function checkLockAndExit {
 	exit
 }
 
-function getGoldMgPrice {
-	local XAUOZ=`curl -s 'http://data-asg.goldprice.org/GetData/USD-XAU/1' | jq -r '.[0]' | cut -d ',' -f 2`
-	local GRAMM_IN_OZ=31.1034768
-	XAUMG=$(echo "scale=10 ; $XAUOZ / $GRAMM_IN_OZ / 1000" | bc)
-}
-
-function getIcoBalance {
-	#ICO_BALANCE=`curl -s 'http://btc.blockr.io/api/v1/address/balance/3CWicRKHQqcj1N6fT1pC9J3hUzHw1KyPv3?confirmations=2' | jq -r '.data.balance'`
-	ICO_BALANCE=600.18
-}
-
-function getBtcUsdPrice {
-	BTC_USD=`curl -s 'https://btc-e.com/api/3/ticker/btc_usd-btc_btc?ignore_invalid=1' | jq -r '.btc_usd.last'`
+function getGbgGolosPrice {
+	GBG_GOLOS=`curl -s 'http://steemul.ru/price/gbg/'`
 }
 
 is_locked
@@ -82,13 +67,7 @@ fi
 
 
 # Getting input data
-getGoldMgPrice
-getIcoBalance
-getBtcUsdPrice
-
-# Calc
-GOLOS_USD=$(echo "scale=10 ; $ICO_BALANCE * $BTC_USD / $ICO_TOKENS" | bc)
-GBG_GOLOS=$(echo "scale=3 ; $XAUMG / $GOLOS_USD" | bc)
+getGbgGolosPrice
 
 # Publish
 BASE="1.000"
