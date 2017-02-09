@@ -39,7 +39,7 @@ function checkLockAndExit {
 }
 
 function getGbgGolosPrice {
-	GBG_GOLOS=`curl -s 'http://steemul.ru/price/gbg/'`
+	GBG_GOLOS=$(curl -s 'http://steemul.ru/price/gbg/' | awk '{printf "%.3f", $0})
 }
 
 is_locked
